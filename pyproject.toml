@@ -1,0 +1,36 @@
+[tool.poetry]
+name = "wishlist"
+version = "1.0"
+description = "Приложение для сохранения желаемых подарков"
+authors = ["Lapikova Maria <mashik_p@mail.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+taskipy = "^1.10.3"
+fastapi = "^0.104.1"
+uvicorn = {extras = ["standard"], version = "^0.24.0.post1"}
+
+[tool.poetry.group.test]
+optional = true
+
+[tool.poetry.group.test.dependencies]
+flake8 = "^6.0.0"
+pep8-naming = "^0.13.3"
+flake8-return = "^1.2.0"
+
+[tool.poetry.group.dev]
+optional = true
+
+[tool.poetry.group.dev.dependencies]
+pytest-asyncio = "^0.21.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.isort]
+src_paths = ["app", "tests"]
+
+[tool.taskipy.tasks]
+start = "uvicorn app.main:app --port 8000 --reload"
