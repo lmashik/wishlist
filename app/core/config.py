@@ -4,6 +4,7 @@ from typing import Optional, Any
 
 from pydantic_settings import BaseSettings
 from pydantic import EmailStr, field_validator, PostgresDsn
+from pydantic_core.core_schema import FieldValidationInfo
 
 from app.constants import BASE_DIR, DT_FORMAT, LOG_FORMAT
 
@@ -21,20 +22,25 @@ class Settings(BaseSettings):
     postgres_user: str
     postgres_password: str
     postgres_db: str
-    database_url: PostgresDsn | None = None
+    database_url: Optional[PostgresDsn] = None
 
-    @field_validator('database_url', pre=True)
-    def assemble_db_connection(cls, v: str | None,
-                               values: dict[str, Any]) -> Any:
+    @field_validator('database_url', mode='after')
+    def assemble_db_connection(
+            cls,
+            v: Optional[str],
+            info: FieldValidationInfo
+    ) -> PostgresDsn:
         if isinstance(v, str):
             return v
-        return PostgresDsn.build(
-            scheme='postgresql+asyncpg',
-            user=values.get('postgres_user'),
-            password=values.get('postgres_password'),
-            host=values.get('db_host'),
-            port=values.get('db_port'),
-            path=f'/{values.get("postgres_db") or ""}',
+        return str(
+            PostgresDsn.build(
+                scheme='postgresql+asyncpg',
+                username=info.data.get('postgres_user'),
+                password=info.data.get('postgres_password'),
+                host=info.data.get('db_host'),
+                port=int(info.data.get('db_port')),
+                path=f'{info.data.get("postgres_db") or ""}',
+            )
         )
 
     class Config:
