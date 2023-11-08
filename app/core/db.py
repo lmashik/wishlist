@@ -1,4 +1,5 @@
 from sqlalchemy import Column, Integer
+from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import declarative_base, declared_attr, sessionmaker
 
@@ -11,6 +12,7 @@ class PreBase:
         return cls.__name__.lower()
 
     id = Column(Integer, primary_key=True)
+    uuid = Column(UUID, nullable=False)
 
 
 Base = declarative_base(cls=PreBase)
