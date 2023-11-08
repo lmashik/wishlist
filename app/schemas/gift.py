@@ -13,3 +13,5 @@ class GiftCreate(BaseModel):
         max_length=NAME_MAX_LENGTH,
     )
     comment: Optional[str]
+    link: Optional[str]
+    price: Optional[int]
