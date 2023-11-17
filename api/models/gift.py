@@ -1,6 +1,6 @@
 from sqlalchemy import Column, String, Text, Integer
 
-from app.core.db import Base
+from api.core.db import Base
 
 
 class Gift(Base):

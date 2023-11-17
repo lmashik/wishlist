@@ -6,7 +6,7 @@ from pydantic_settings import BaseSettings
 from pydantic import EmailStr, field_validator, PostgresDsn
 from pydantic_core.core_schema import FieldValidationInfo
 
-from app.constants import BASE_DIR, DT_FORMAT, LOG_FORMAT
+from api.constants import BASE_DIR, DT_FORMAT, LOG_FORMAT
 
 
 class Settings(BaseSettings):

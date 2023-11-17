@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from app.crud.gift import create_gift
-from app.schemas.gift import GiftCreate
+from api.crud.gift import create_gift
+from api.schemas.gift import GiftCreate
 
 router = APIRouter()
 

@@ -1,6 +1,6 @@
-from app.core.db import AsyncSessionLocal
-from app.models.gift import Gift
-from app.schemas.gift import GiftCreate
+from api.core.db import AsyncSessionLocal
+from api.models.gift import Gift
+from api.schemas.gift import GiftCreate
 
 
 async def create_gift(

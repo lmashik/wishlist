@@ -38,4 +38,4 @@ build-backend = "poetry.core.masonry.api"
 src_paths = ["app", "tests"]
 
 [tool.taskipy.tasks]
-start = "uvicorn app.main:app --port 8000 --reload"
+start = "uvicorn api.main:app --port 8000 --reload"

@@ -1,3 +1,3 @@
 """Импорты класса Base и всех моделей для Alembic."""
-from app.core.db import Base # noqa
-from app.models.gift import Gift # noqa
+from api.core.db import Base # noqa
+from api.models.gift import Gift # noqa

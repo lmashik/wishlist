@@ -2,7 +2,7 @@ from typing import Optional
 
 from pydantic import BaseModel, Field
 
-from app.constants import NAME_MAX_LENGTH, NAME_MIN_LENGTH
+from api.constants import NAME_MAX_LENGTH, NAME_MIN_LENGTH
 
 
 class GiftCreate(BaseModel):
